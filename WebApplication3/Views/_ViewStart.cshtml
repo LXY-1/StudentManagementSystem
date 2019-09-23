@@ -1,0 +1,23 @@
+﻿
+    @*我们不启动给所有页面加上布局模板，我们采用手动的方式
+    @{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
+    @*不过输入哪一个url=调用哪一个控制器方法：页面渲染前都会先执行viewstart.cshtml:可以在这里执行一些拦截操作*@
+<script>
+
+    let isLogin = false;
+    if (isLogin) {
+
+    } else {
+        alert('您还未登录请先登录')
+        let url = location.href
+        let pathName = location.pathname
+        let pos = url.indexOf(pathName)
+        let localHostPath = pathName == '/' ? url : url.slice(0, pos)
+        // 重新跳到登录页面
+        location.href = localHostPath + 'Login/Login'
+    }
+
+</script>
+
