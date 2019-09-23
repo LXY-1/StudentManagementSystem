@@ -1,6 +1,5 @@
-﻿
-@{
-    Layout = null;
+﻿@{
+Layout = null;
 }
 
 <!--
@@ -13,11 +12,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 
 <head>
-    <title> Master login Form Responsive Widget Template  :: w3layouts</title>
+    <title> Master login Form Responsive Widget Template :: w3layouts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content=" XOL学生管理系统" />
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script
+        type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     @Styles.Render("~/Content/login.css")
     <link href=../../Content" rel="stylesheet" type="text/css" media="all" />
     <!-- <link href="//fonts.googleapis.com/css?family=Cormorant+SC:300,400,500,600,700" rel="stylesheet">
@@ -25,7 +25,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 
 <body>
-    <div class="padding-all">
+    <div class="padding-all" id="login">
         <div class="header">
             <h1>登录XOL学生管理系统</h1>
         </div>
@@ -35,15 +35,48 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <form action="#" method="post">
                     <input type="text" name="name" placeholder="请输入账号" required="" />
                     <input type="password" name="password" class="padding" placeholder="请输入密码" required="" />
-                    <input type="submit" value="登录">
+                    <input type="submit" value="登录" @click='login'>
                 </form>
             </div>
             <div class="clear"> </div>
         </div>
 
         <div class="footer">
-            <p>&copy; @DateTime.Now.Year - 软件1161小组版权所有</p>
+            <p>&copy; @DateTime.Now.Year - 软件1161小组版权所有{{message}}</p>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="~/Scripts/axis.js"></script>
+    <script>
+
+
+        var app = new Vue({
+            el: '#login',
+            data: {
+                message: 'Hello Vue!'
+            },
+            mounted() {
+                //请求后台数据例子
+                let getData = request({
+                    url: '',
+                    method: 'post',
+
+                })
+                getData.then((result) => {
+                    console.log(result)
+                }).catch((err) => {
+                    console.log(err)
+                });
+            },
+            method:{
+                login(){
+                    // Home/Index
+                }
+            }
+
+        })
+    </script>
 </body>
+
 </html>

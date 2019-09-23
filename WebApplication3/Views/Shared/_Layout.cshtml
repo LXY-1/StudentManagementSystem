@@ -21,23 +21,24 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                
+
                     @*<li>@Html.ActionLink("主页", "Index", "Home")</li*@>
                     <li>@Html.ActionLink("退出", "Aboust", "Home")</li>
                     <li>@Html.ActionLink("个人中心", "Contact", "Home")</li>
-                
+
                 </ul>
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
-       
+
         <footer style="position:fixed;bottom:0;">
             <p>&copy; @DateTime.Now.Year - 软件1161小组版权所有 </p>
         </footer>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
