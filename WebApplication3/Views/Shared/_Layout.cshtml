@@ -44,7 +44,7 @@
 
     <!-- Themer -->
     <div id="mws-themer">
-        
+
         <div id="mws-themer-content">
             <div class="mws-themer-section">
                 <label for="mws-theme-presets">Presets</label> <select id="mws-theme-presets"></select>
@@ -83,9 +83,9 @@
     <div id="mws-header" class="clearfix">
         <div id="mws-logo-container">
             <div id="mws-logo-wrap">
-             
+
                 <img src="~/Content/images/gdohlogo.png" alt="mws admin" />
- 
+
             </div>
         </div>
         <div style="margin-top:15px;float:left">
@@ -93,10 +93,10 @@
         </div>
         <div style="float:right;margin-top:17px;margin-right:50px;">
             <span style="color:#fff;font-weight:bold;font-size:15px;cursor:pointer;" class="hover">@Html.ActionLink("退出", "Login", "Login")</span>
-            <span style="color:#fff;font-weight:bold;font-size:15px;cursor:pointer;margin-left:20px;"  class="hover">个人中心</span>
+            <span style="color:#fff;font-weight:bold;font-size:15px;cursor:pointer;margin-left:20px;" class="hover">个人中心</span>
         </div>
 
-        
+
     </div>
 
 
@@ -121,29 +121,14 @@
             <!-- Main Navigation -->
             <div id="mws-navigation">
                 <ul>
-                    <li class="active">
-                        <a href="#123" class="mws-i-24 i-home">用户管理</a>
-                        <ul>
-                            <li><a href="#123">@Html.ActionLink("用户查询", "SearchUser", "User")</a></li>
-                            <li><a href="#123">@Html.ActionLink("添加用户", "AddUser", "User")</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#123" class="mws-i-24 i-home">角色管理</a>
-                        <ul>
-                            <li><a href="#123">角色查询</a></li>
-                            <li><a href="#123">添加角色</a></li>
+                    <li v-for="(item, index) in menus" v-bind:class="{ active: index==0 }">
+                        <a href="#123" class="mws-i-24 i-home" >{{ item.name }}</a>
+                        <ul v-if="item.child.length!=0">  
+                            <li v-for="(itemchild,chileIndex) in item.child"><a v-bind:href="'http://localhost:11252/'+ itemchild.controlName + '/' + itemchild.pageName"  v-text="itemchild.name"> </a></li>
                         </ul>
                     </li>
                     <!-- 只简单做一个查询和显示所有的权限 -->
-                    <li><a href="#123" class="mws-i-24 i-chart">权限管理</a></li>
-                    <li>
-                        <a href="#" class="mws-i-24 i-list">学生管理</a>
-                        <ul>
-                            <li><a href="#123">查询学生</a></li>
-                            <li><a href="#123">学生选课</a></li>
-                        </ul>
-                    </li>
+                    @*学生管理：基本能的增删改查，其中可以通过各种条件进行查询*@
                 </ul>
             </div>
             <!-- End Navigation -->
@@ -158,15 +143,30 @@
                 @RenderBody();
             </div>
             <div id="mws-footer" style="position:fixed;bottom:0;">
-                Copyright © 2019.By 软件1161.Net小组成员 
+                Copyright © 2019.By 软件1161.Net小组成员
             </div>
         </div>
-       
+
         <!-- End Container Wrapper -->
 
     </div>
     <!-- End Main Wrapper -->
 
+    <script src="~/Scripts/Menu.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
 
+        var app = new Vue({
+            el: '#mws-wrapper',
+            data: {
+                menus:[]
+            },
+            mounted() {
+                console.log(MenuDatas)
+                this.menus = MenuDatas;
+            }
+        })
+
+    </script>
 </body>
 </html>
