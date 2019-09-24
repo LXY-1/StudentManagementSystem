@@ -1,16 +1,17 @@
-﻿
-@*手动添加布局模板*@
-@{   
-      Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@*手动添加布局模板*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "首页";
 }
 
-<div class="jumbotron change-mar1">
-    <h2>欢迎使用XOL学生管理系统</h2>
-    <p class="lead">XOL学生管理系统是一个优秀的在线学生信息管理系统，我们为老师、学生提供优质服务！</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">快速上手 &raquo;</a></p>
+@Styles.Render("~/Content/css")
+
+<div class="jumbotron">
+    <h2>欢迎使用本学生管理系统</h2>
+    <p class="lead">本学生管理系统是一个优秀的在线学生信息管理系统，我们为老师、学生提供优质服务！</p>
+    <p><a href="#123" class="btn btn-primary btn-lg">快速上手 &raquo;</a></p>
 </div>
 

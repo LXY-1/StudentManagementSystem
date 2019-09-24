@@ -1,46 +1,172 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 在线学生管理系统 </title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- Required Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="~/Content/reset.css" media="screen" />
+
+    <!-- TODO:关键的y样式 -->
+    <link rel="stylesheet" type="text/css" href="~/Content/mws_style.css" media="screen" />
+
+    <!-- Demo and Plugin Stylesheets -->
+
+    <link rel="stylesheet" type="text/css" href="~/Content/colorpicker.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.ui.css" media="screen" />
+
+    <!-- Theme Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="~/Content/mws_theme.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/Content/index.css" media="screen" />
+    <style>
+        .hover:hover {
+            color: #c5d52b;
+        }
+    </style>
+
+    <!-- JavaScript Plugins -->
+
+    <script type="text/javascript" src="~/Scripts/jq17.js"></script>
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="plugins/flot/excanvas.min.js"></script>
+    <![endif]-->
+
+
+    <script type="text/javascript" src="~/Scripts/mws.js"></script>
+    <script type="text/javascript" src="~/Scripts/themer.js"></script>
+
+
+    <title>@ViewBag.Title - 学生管理系统</title>
+
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("XOL学生管理系统", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+    <!-- Themer -->
+    <div id="mws-themer">
+        
+        <div id="mws-themer-content">
+            <div class="mws-themer-section">
+                <label for="mws-theme-presets">Presets</label> <select id="mws-theme-presets"></select>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-
-                    @*<li>@Html.ActionLink("主页", "Index", "Home")</li*@>
-                    <li>@Html.ActionLink("退出", "Aboust", "Home")</li>
-                    <li>@Html.ActionLink("个人中心", "Contact", "Home")</li>
-
+            <div class="mws-themer-separator"></div>
+            <div class="mws-themer-section">
+                <ul>
+                    <li><span>Base Color</span> <div id="mws-base-cp" class="mws-cp-trigger"></div></li>
+                    <li><span>Text Color</span> <div id="mws-text-cp" class="mws-cp-trigger"></div></li>
+                    <li><span>Text Glow Color</span> <div id="mws-textglow-cp" class="mws-cp-trigger"></div></li>
                 </ul>
+            </div>
+            <div class="mws-themer-separator"></div>
+            <div class="mws-themer-section">
+                <ul>
+                    <li><span>Text Glow Opacity</span> <div id="mws-textglow-op"></div></li>
+                </ul>
+            </div>
+            <div class="mws-themer-separator"></div>
+            <div class="mws-themer-section">
+                <button class="mws-button red small" id="mws-themer-getcss">Get CSS</button>
+            </div>
+        </div>
+        <div id="mws-themer-css-dialog">
+            <div class="mws-form">
+                <div class="mws-form-row" style="padding:0;">
+                    <div class="mws-form-item">
+                        <textarea cols="auto" rows="auto" readonly="readonly"></textarea>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
+    <!-- Themer End -->
+    <!-- Header Wrapper -->
+    <div id="mws-header" class="clearfix">
+        <div id="mws-logo-container">
+            <div id="mws-logo-wrap">
+             
+                <img src="~/Content/images/gdohlogo.png" alt="mws admin" />
+ 
+            </div>
+        </div>
+        <div style="margin-top:15px;float:left">
+            <span style="color:#ffffff;font-size:24px;font-weight:bold;"> 学生管理系统</span>
+        </div>
+        <div style="float:right;margin-top:17px;margin-right:50px;">
+            <span style="color:#fff;font-weight:bold;font-size:15px;cursor:pointer;" class="hover">@Html.ActionLink("退出", "Login", "Login")</span>
+            <span style="color:#fff;font-weight:bold;font-size:15px;cursor:pointer;margin-left:20px;"  class="hover">个人中心</span>
+        </div>
 
-        <footer style="position:fixed;bottom:0;">
-            <p>&copy; @DateTime.Now.Year - 软件1161小组版权所有 </p>
-        </footer>
+        
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+
+    <!-- Main Wrapper -->
+    <div id="mws-wrapper">
+        <!-- Necessary markup, do not remove -->
+        <div id="mws-sidebar-stitch"></div>
+        <div id="mws-sidebar-bg"></div>
+
+        <!-- Sidebar Wrapper -->
+        <div id="mws-sidebar">
+
+            <!-- Search Box -->
+            <div id="mws-searchbox" class="mws-inset">
+                <form action="http://www.malijuwebshop.com/themes/mws-admin/dashboard.html">
+                    <input type="text" class="mws-search-input" placeholder="功能查询" />
+                    <input type="submit" class="mws-search-submit" />
+                </form>
+            </div>
+
+            <!-- Main Navigation -->
+            <div id="mws-navigation">
+                <ul>
+                    <li class="active">
+                        <a href="#123" class="mws-i-24 i-home">用户管理</a>
+                        <ul>
+                            <li><a href="#123">@Html.ActionLink("用户查询", "SearchUser", "User")</a></li>
+                            <li><a href="#123">@Html.ActionLink("添加用户", "AddUser", "User")</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#123" class="mws-i-24 i-home">角色管理</a>
+                        <ul>
+                            <li><a href="#123">角色查询</a></li>
+                            <li><a href="#123">添加角色</a></li>
+                        </ul>
+                    </li>
+                    <!-- 只简单做一个查询和显示所有的权限 -->
+                    <li><a href="#123" class="mws-i-24 i-chart">权限管理</a></li>
+                    <li>
+                        <a href="#" class="mws-i-24 i-list">学生管理</a>
+                        <ul>
+                            <li><a href="#123">查询学生</a></li>
+                            <li><a href="#123">学生选课</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- End Navigation -->
+
+        </div>
+
+
+        <!-- Container Wrapper -->
+        <div id="mws-container" class="clearfix">
+            <div class="container">
+                @*主体内容*@
+                @RenderBody();
+            </div>
+            <div id="mws-footer" style="position:fixed;bottom:0;">
+                Copyright © 2019.By 软件1161.Net小组成员 
+            </div>
+        </div>
+       
+        <!-- End Container Wrapper -->
+
+    </div>
+    <!-- End Main Wrapper -->
+
+
 </body>
 </html>
